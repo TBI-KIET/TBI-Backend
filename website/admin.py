@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Events
+from django.contrib import admin
+
+class EventsAdmin(admin.ModelAdmin):
+    list_display = ('title','occured')
+    list_filter = ('occured',)
+
+admin.site.register(Events, EventsAdmin)
