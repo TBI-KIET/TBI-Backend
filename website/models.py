@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.utils import timezone
 
 
 class Events(models.Model):
@@ -8,16 +9,17 @@ class Events(models.Model):
     eventDate = models.DateField()
     venue = models.TextField()
     image = models.ImageField(null=True, blank=True)
-    occured = models.BooleanField(default=False)
 
 
     class Meta:
         verbose_name_plural = 'Events'
         ordering = ['eventDate']
 
-
     def __str__(self):
         return self.title
+    
+    def is_past(self):
+        return self.eventDate < timezone.now()
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

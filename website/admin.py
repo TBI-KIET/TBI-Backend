@@ -7,4 +7,4 @@ class EventsAdmin(admin.ModelAdmin):
     list_display = ('title','occured')
     list_filter = ('occured',)
 
-admin.site.register(Events, EventsAdmin)
+admin.site.register(Events)
