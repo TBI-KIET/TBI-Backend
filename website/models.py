@@ -24,3 +24,13 @@ class Events(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+class ContactUs(models.Model):
+    email = models.EmailField()
+    name = models.CharField(max_length=50)
+    subject = models.TextField()
+    message = models.TextField()
+
+
+    def __str__(self):
+        return f'{self.name} {self.subject}'
