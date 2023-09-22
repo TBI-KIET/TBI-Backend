@@ -8,7 +8,7 @@ class Events(models.Model):
     description = models.TextField()
     eventDate = models.DateField()
     venue = models.TextField()
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to = 'event_images/')
 
 
     class Meta:
