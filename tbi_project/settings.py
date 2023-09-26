@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'website',
     'rest_framework',
     'forms',
-    'corsheaders'
+    'corsheaders',
+    'phonenumber_field',
 
 ]
 
@@ -75,6 +76,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'tbi_project.wsgi.application'
+
+
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 
 # Database
