@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'forms',
     'corsheaders',
     'phonenumber_field',
+    'djmoney',
 
 ]
 

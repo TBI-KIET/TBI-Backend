@@ -1,9 +1,13 @@
 asgiref==3.7.2
+Babel==2.12.1
 Django==4.2.4
 django-cors-headers==4.2.0
+django-money==3.3.0
 django-phonenumber-field==7.1.0
 djangorestframework==3.14.0
 phonenumbers==8.13.21
 Pillow==10.0.0
+py-moneyed==3.0
 pytz==2023.3
 sqlparse==0.4.4
+typing_extensions==4.8.0
