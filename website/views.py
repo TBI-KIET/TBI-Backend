@@ -5,16 +5,10 @@ from .serializers import *
 from rest_framework import status
 from rest_framework.response import Response
 from django.utils import timezone
+from django.shortcuts import get_object_or_404
 
 
 class EventsAPIView(APIView):
-
-    def get_object(self, slug):
-        try:
-            return Events.objects.get(slug = slug)
-        except Events.DoesNotExist:
-            return None
-        
 
     def get(self, request):
         upcoming_events = Events.objects.filter(eventDate__gte=timezone.now())
@@ -30,6 +24,15 @@ class EventsAPIView(APIView):
 
         return Response(data, status = status.HTTP_200_OK)
     
+
+class PastEventDetailView(APIView):
+    def get(self, request, slug):
+        event = get_object_or_404(Events, slug=slug, eventDate__lt=timezone.now())
+        if event is None:
+            return Response({'error': 'Post not found'}, status = status.HTTP_404_NOT_FOUND)
+        
+        serializer = EventSerializer(event)        
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
 class ContactAPIView(APIView):
     def post (self ,request ):

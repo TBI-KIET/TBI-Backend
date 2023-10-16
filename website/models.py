@@ -5,6 +5,7 @@ from django.utils import timezone
 
 class Events(models.Model):
     title = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True, max_length=255, default='')
     description = models.TextField()
     eventDate = models.DateField()
     venue = models.TextField()
@@ -21,9 +22,12 @@ class Events(models.Model):
     def is_past(self):
         return self.eventDate < timezone.now()
     
+
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        if not self.slug:
+            self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
 
 class ContactUs(models.Model):
     email = models.EmailField()
